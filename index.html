@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CredFolio | Verifiable Student Talent Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">CF</div>
+          <div>
+            <strong>CredFolio</strong>
+            <span>NEP 2020 skill profile</span>
+          </div>
+        </div>
+
+        <nav class="nav-tabs" aria-label="Workspace sections">
+          <button class="nav-tab active" data-tab="overview" type="button">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            Overview
+          </button>
+          <button class="nav-tab" data-tab="portfolio" type="button">
+            <span class="nav-icon" aria-hidden="true">▣</span>
+            Portfolio
+          </button>
+          <button class="nav-tab" data-tab="discovery" type="button">
+            <span class="nav-icon" aria-hidden="true">⌕</span>
+            Skill Finder
+          </button>
+          <button class="nav-tab" data-tab="dedication" type="button">
+            <span class="nav-icon" aria-hidden="true">▦</span>
+            Dedication
+          </button>
+          <button class="nav-tab" data-tab="verification" type="button">
+            <span class="nav-icon" aria-hidden="true">◇</span>
+            Verification
+          </button>
+        </nav>
+
+        <div class="school-card">
+          <span>Institution verifier</span>
+          <strong>Delhi Public School</strong>
+          <p>2 faculty reviewers online</p>
+          <p id="syncStatus">Local demo mode</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Holistic learner record</p>
+            <h1>Build a verified profile beyond marks.</h1>
+          </div>
+          <div class="profile-chip">
+            <div class="avatar" aria-hidden="true">AS</div>
+            <div>
+              <strong>Aarav Sharma</strong>
+              <span>Class 10 · STEM + Football</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="tab-panel active" id="overview" aria-labelledby="overview-tab">
+          <div class="hero-band">
+            <div class="hero-copy">
+              <p class="eyebrow">Student value graph</p>
+              <h2>Discover skills, prove talent, and track dedication in one trusted profile.</h2>
+              <p>CredFolio organizes sports, arts, technology, vocational activities, and community achievements into evidence-backed records that schools can verify.</p>
+              <div class="hero-actions">
+                <button class="primary-action" data-open-tab="portfolio" type="button">Add Evidence</button>
+                <button class="secondary-action" data-open-tab="discovery" type="button">Find Next Skill</button>
+              </div>
+            </div>
+            <div class="talent-visual" aria-label="Skill profile visualization">
+              <div class="ring ring-sports">Sports</div>
+              <div class="ring ring-tech">Tech</div>
+              <div class="ring ring-arts">Arts</div>
+              <div class="ring ring-service">Service</div>
+              <div class="visual-core">
+                <strong>TalentID</strong>
+                <span>83% verified</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Verified achievements</span>
+              <strong id="verifiedCount">0</strong>
+              <p>Approved by school, coach, or mentor</p>
+            </article>
+            <article class="metric-card">
+              <span>Dedication logged</span>
+              <strong id="hoursCount">0h</strong>
+              <p>Across sports, arts, tech, and service</p>
+            </article>
+            <article class="metric-card">
+              <span>Portfolio strength</span>
+              <strong id="strengthScore">0%</strong>
+              <p>Evidence depth, verification, and consistency</p>
+            </article>
+            <article class="metric-card">
+              <span>Recommended path</span>
+              <strong>Sports Tech</strong>
+              <p>Based on football analytics and coding logs</p>
+            </article>
+          </div>
+
+          <div class="split-layout">
+            <section class="workspace-panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Recent proof</p>
+                  <h3>Evidence awaiting recognition</h3>
+                </div>
+                <button class="ghost-action" data-open-tab="portfolio" type="button">View All</button>
+              </div>
+              <div class="evidence-list compact" id="recentEvidence"></div>
+            </section>
+
+            <section class="workspace-panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Dedication pulse</p>
+                  <h3>Last 28 days</h3>
+                </div>
+                <button class="ghost-action" data-open-tab="dedication" type="button">Log Time</button>
+              </div>
+              <div class="mini-heatmap" id="miniHeatmap" aria-label="Activity heatmap"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="portfolio">
+          <div class="section-head page-head">
+            <div>
+              <p class="eyebrow">Proof-of-skill</p>
+              <h2>Verifiable portfolio</h2>
+            </div>
+            <button class="primary-action" id="addEvidenceBtn" type="button">Add Sample Evidence</button>
+          </div>
+          <div class="portfolio-grid" id="portfolioGrid"></div>
+        </section>
+
+        <section class="tab-panel" id="discovery">
+          <div class="section-head page-head">
+            <div>
+              <p class="eyebrow">Child-centered skill finder</p>
+              <h2>Real pathways matched to the student's need</h2>
+            </div>
+            <div class="segmented" role="group" aria-label="Recommendation focus">
+              <button class="segment active" data-focus="balanced" type="button">Balanced</button>
+              <button class="segment" data-focus="sports" type="button">Sports</button>
+              <button class="segment" data-focus="tech" type="button">Tech</button>
+              <button class="segment" data-focus="arts" type="button">Arts</button>
+            </div>
+          </div>
+          <div class="child-needs-panel">
+            <form class="needs-form" id="needsForm">
+              <label>
+                Child's current need
+                <select id="needSelect">
+                  <option value="confidence">Build confidence</option>
+                  <option value="foundation">Improve basics</option>
+                  <option value="competition">Prepare for competition</option>
+                  <option value="career">Explore career direction</option>
+                  <option value="portfolio">Make achievements verifiable</option>
+                </select>
+              </label>
+              <label>
+                Grade
+                <select id="gradeSelect">
+                  <option value="6-8">6-8</option>
+                  <option value="9-10" selected>9-10</option>
+                  <option value="11-12">11-12</option>
+                </select>
+              </label>
+              <label>
+                Time available weekly
+                <select id="timeSelect">
+                  <option value="low">1-3 hours</option>
+                  <option value="medium" selected>4-6 hours</option>
+                  <option value="high">7+ hours</option>
+                </select>
+              </label>
+              <label>
+                Access
+                <select id="accessSelect">
+                  <option value="phone">Phone only</option>
+                  <option value="shared" selected>Shared computer</option>
+                  <option value="lab">School lab / sports facility</option>
+                </select>
+              </label>
+            </form>
+            <div class="student-response" id="studentResponse"></div>
+          </div>
+          <div class="recommendation-grid" id="recommendations"></div>
+          <section class="source-panel">
+            <p class="eyebrow">Real data sources used</p>
+            <div class="source-grid">
+              <a href="https://diksha.gov.in/?lang=en" target="_blank" rel="noreferrer">DIKSHA curriculum resources</a>
+              <a href="https://www.kheloindia.gov.in/" target="_blank" rel="noreferrer">Khelo India sports pathway</a>
+              <a href="https://courses.skillindiadigital.gov.in/courses/" target="_blank" rel="noreferrer">Skill India Digital Hub</a>
+              <a href="https://aim.gov.in/atl.php" target="_blank" rel="noreferrer">Atal Tinkering Labs</a>
+              <a href="https://www.kalautsav.ncert.gov.in/" target="_blank" rel="noreferrer">NCERT Kala Utsav</a>
+              <a href="https://www.ncs.gov.in/" target="_blank" rel="noreferrer">National Career Service</a>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="dedication">
+          <div class="section-head page-head">
+            <div>
+              <p class="eyebrow">Proof-of-dedication</p>
+              <h2>Practice and effort tracker</h2>
+            </div>
+            <form class="log-form" id="logForm">
+              <select id="logCategory" aria-label="Category">
+                <option>Tech</option>
+                <option>Sports</option>
+                <option>Arts</option>
+                <option>Service</option>
+              </select>
+              <input id="logHours" type="number" min="1" max="8" value="2" aria-label="Hours">
+              <button class="primary-action" type="submit">Log Hours</button>
+            </form>
+          </div>
+          <div class="dedication-layout">
+            <section class="workspace-panel">
+              <h3>90-day dedication heat map</h3>
+              <div class="heatmap" id="heatmap" aria-label="90 day dedication heatmap"></div>
+            </section>
+            <section class="workspace-panel">
+              <h3>Category balance</h3>
+              <div class="balance-list" id="balanceList"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="verification">
+          <div class="section-head page-head">
+            <div>
+              <p class="eyebrow">Tamper-resistant records</p>
+              <h2>Certificate verification center</h2>
+            </div>
+            <button class="primary-action" id="verifyNextBtn" type="button">Approve Next Claim</button>
+          </div>
+          <div class="verification-layout">
+            <section class="certificate" id="certificate">
+              <div>
+                <p class="eyebrow">Digital certificate</p>
+                <h3 id="certTitle">Loading...</h3>
+                <p id="certMeta"></p>
+              </div>
+              <canvas id="qrCanvas" width="132" height="132" aria-label="Verification QR code"></canvas>
+              <div class="hash-box">
+                <span>SHA-256 proof hash</span>
+                <code id="hashOutput">Generating...</code>
+              </div>
+              <div class="hash-box signature-box">
+                <span>RSA-PSS school signature</span>
+                <code id="signatureOutput">Waiting for verified certificate...</code>
+                <p id="signatureStatus">The school signature is created only when an institution approves a claim.</p>
+              </div>
+            </section>
+            <section class="workspace-panel">
+              <h3>Two-tier trust model</h3>
+              <div class="trust-steps">
+                <div>
+                  <strong>1. Institutional approval</strong>
+                  <p>Teacher, coach, mentor, or school admin approves uploaded evidence.</p>
+                </div>
+                <div>
+                  <strong>2. Cryptographic integrity</strong>
+                  <p>Every approved claim receives a hash and scannable proof pattern to detect tampering.</p>
+                </div>
+                <div>
+                  <strong>3. Portable student record</strong>
+                  <p>Students can share a trusted profile for competitions, internships, and admissions.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
